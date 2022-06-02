@@ -1,0 +1,154 @@
+name: Release
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  check-release:
+    name: Check if actor is eligible
+    runs-on: ubuntu-latest
+    outputs:
+      comment-id: ${{ steps.check-maintainer-role.outputs.comment-id }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check actor's permissions
+        id: check-maintainer-role
+        uses: ./.github/actions/check-maintainer-role
+        with:
+          success: Release issue noticed. Build triggered
+          failure: You can't trigger a release
+          label: kind/release
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    name: Test
+    needs: check-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Test
+        id: test
+        uses: ./.github/actions/test
+
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v2
+        if: ${{ always() }}
+        id: comment
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ needs.check-release.outputs.comment-id }}
+          body: ${{ steps.test.outcome == 'success' && '🔍 Tests passed' || '👎 Tests failed' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  check-build:
+    name: Build
+    needs: check-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        id: build
+        uses: ./.github/actions/build-controller
+
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v2
+        if: ${{ always() }}
+        id: comment
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ needs.check-release.outputs.comment-id }}
+          body: ${{ steps.build.outcome == 'success' && '🏗️ All packages are buildable' || '💣 Failed to build all packages' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release-to-git:
+    name: Release to Git
+    needs:
+      - test
+      - check-release
+      - check-build
+    runs-on: ubuntu-latest
+    outputs:
+      tag: v${{ steps.semantic.outputs.new_release_version }}
+    steps:
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ needs.check-release.outputs.comment-id}}
+          body: |
+            📦 Releasing to Github
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Read Node.JS version
+        id: node_version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./.nvmrc
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "${{ steps.node_version.outputs.content }}"
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Release via semantic-release
+        uses: cycjimmy/semantic-release-action@v2
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v2
+        if: ${{ steps.semantic.outputs.new_release_published != 'true' }}
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ needs.check-release.outputs.comment-id }}
+          body: |
+            ⛔ Semantic release determined that no release is needed, closing
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Close issue
+        uses: peter-evans/close-issue@v2
+        if: ${{ steps.semantic.outputs.new_release_published != 'true' }}
+        with:
+          issue-number: ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Exit on failure
+        if: ${{ steps.semantic.outputs.new_release_published != 'true' }}
+        run: exit 1
+
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v2
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ needs.check-release.outputs.comment-id }}
+          body: |
+            🎉 Released!
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

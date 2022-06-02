@@ -1,0 +1,27 @@
+{
+  "name": "@open-services-group/probot-kubernetes",
+  "version": "1.0.0",
+  "description": "Probot extension to interact with Kubernetes",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/open-services-group/probot-extensions.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/open-services-group/probot-extensions/issues"
+  },
+  "homepage": "https://github.com/open-services-group/probot-extensions#readme",
+  "peerDependencies": {
+    "dotenv": "^16.0.1",
+    "probot": "^12.2.3"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.16.3"
+  }
+}

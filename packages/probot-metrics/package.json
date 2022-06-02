@@ -1,0 +1,26 @@
+{
+  "name": "@open-services-group/probot-metrics",
+  "version": "1.0.0",
+  "description": "Probot extension to expose Prometheus metrics",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/open-services-group/probot-extensions.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/open-services-group/probot-extensions/issues"
+  },
+  "homepage": "https://github.com/open-services-group/probot-extensions#readme",
+  "dependencies": {
+    "prom-client": "^14.0.1"
+  },
+  "peerDependencies": {
+    "express": "^4.18.1"
+  }
+}
