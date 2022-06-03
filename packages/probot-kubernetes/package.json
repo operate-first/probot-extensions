@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Probot extension to interact with Kubernetes",
   "main": "lib/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest"
