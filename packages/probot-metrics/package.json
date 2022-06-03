@@ -22,5 +22,8 @@
   },
   "peerDependencies": {
     "express": "^4.18.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
