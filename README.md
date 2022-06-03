@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="static/robot.svg" width="200" alt="Probot's logo, a cartoon robot" />
+  <a href="https://github.com/open-services-group/probot-extensions"><img src="static/robot.svg" width="200" alt="Probot's logo, a cartoon robot" /></a>
 </p>
 <h2 align="center">Probot extensions</h2>
 <p align="center">by Open Services Group</p>
@@ -25,10 +25,10 @@
 <p align="center">This is a collection of extensions to <a href="https://probot.github.io/">Probot</a>. For details see individual packages</p>
 
 
-| Package                                  | Documentation                                                                                                        | Tags                                                                                                                                                             |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@open-services-group/probot-kubernetes` | [![Documentation](https://img.shields.io/badge/docs-packages/probot--kubernetes-blue)](./packages/probot-kubernetes) | ![npm](https://img.shields.io/npm/dw/@open-services-group/probot-kubernetes) ![npm (scoped)](https://img.shields.io/npm/v/open-services-group/probot-kubernetes) |
-| `@open-services-group/probot-metrics`    | [![Documentation](https://img.shields.io/badge/docs-packages/probot--metrics-blue)](./packages/probot-metrics)       | ![npm](https://img.shields.io/npm/dw/@open-services-group/probot-metrics) ![npm (scoped)](https://img.shields.io/npm/v/open-services-group/probot-metrics)       |
+| Package                                  | Documentation                                                                                                        | Tags                                                                                                                                                                                                                                                                                                              |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@open-services-group/probot-kubernetes` | [![Documentation](https://img.shields.io/badge/docs-packages/probot--kubernetes-blue)](./packages/probot-kubernetes) | [![npm](https://img.shields.io/npm/dw/@open-services-group/probot-kubernetes)](https://www.npmjs.com/package/@open-services-group/probot-kubernetes) [![npm (scoped)](https://img.shields.io/npm/v/@open-services-group/probot-kubernetes)](https://www.npmjs.com/package/@open-services-group/probot-kubernetes) |
+| `@open-services-group/probot-metrics`    | [![Documentation](https://img.shields.io/badge/docs-packages/probot--metrics-blue)](./packages/probot-metrics)       | [![npm](https://img.shields.io/npm/dw/@open-services-group/probot-metrics)](https://www.npmjs.com/package/@open-services-group/probot-metrics) [![npm (scoped)](https://img.shields.io/npm/v/@open-services-group/probot-metrics)](https://www.npmjs.com/package/@open-services-group/probot-metrics)             |
 
 
 ## Development
