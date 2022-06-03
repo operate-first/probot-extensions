@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/open-services-group/probot-extensions.git"
   },
-  "author": "",
+  "author": "Open Services Group <open-services-group@redhat.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/open-services-group/probot-extensions/issues"

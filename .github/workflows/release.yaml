@@ -70,8 +70,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  release-to-git:
-    name: Release to Git
+  release:
+    name: Release
     needs:
       - test
       - check-release
@@ -86,7 +86,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           comment-id: ${{ needs.check-release.outputs.comment-id}}
           body: |
-            📦 Releasing to Github
+            📦 Releasing to Github and NPM
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -114,10 +114,10 @@ jobs:
         run: npm ci
 
       - name: Release via semantic-release
-        uses: cycjimmy/semantic-release-action@v2
-        id: semantic
+        run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v2
