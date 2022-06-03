@@ -1,6 +1,6 @@
 {
   "name": "@open-services-group/probot-metrics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Probot extension to expose Prometheus metrics",
   "main": "lib/index.js",
   "types": "dist/index.d.ts",
