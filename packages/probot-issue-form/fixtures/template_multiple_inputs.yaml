@@ -1,0 +1,25 @@
+name: Single input
+description: GA sample template
+title: template
+labels:
+  - label1
+  - label2
+body:
+  - type: input
+    id: thisIsInput
+    attributes:
+      label: This is input field
+      description: Some description
+      placeholder: Some value
+      value: Default value
+    validations:
+      required: true
+  - type: input
+    id: thisIsInput2
+    attributes:
+      label: This is input field
+      description: Some description
+      placeholder: Some value
+      value: Default value
+    validations:
+      required: true
