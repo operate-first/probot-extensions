@@ -1,0 +1,27 @@
+{
+  "name": "@open-services-group/probot-issue-form",
+  "version": "1.0.0",
+  "description": "Probot extension to parse issues created from issue forms",
+  "main": "lib/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/open-services-group/probot-extensions.git"
+  },
+  "author": "Open Services Group <open-services-group@redhat.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/open-services-group/probot-extensions/issues"
+  },
+  "homepage": "https://github.com/open-services-group/probot-extensions#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "yaml": "^2.1.1"
+  }
+}

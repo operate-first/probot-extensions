@@ -1,0 +1,5 @@
+### Checkboxes
+
+- [ ] item0
+- [ ] item1
+- [ ] item2
