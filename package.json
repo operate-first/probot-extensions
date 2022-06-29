@@ -2,7 +2,7 @@
   "name": "probot-extensions",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/open-services-group/probot-extensions",
+  "homepage": "https://github.com/operate-first/probot-extensions",
   "scripts": {
     "release": "multi-semantic-release",
     "test": "jest --passWithNoTests"

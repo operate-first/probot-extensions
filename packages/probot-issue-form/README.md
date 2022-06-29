@@ -5,7 +5,7 @@ This extension provides a ready to use parser for issues created via [issue form
 ## Installation
 
 ```bash
-npm install --save @open-services-group/probot-issue-form
+npm install --save @operate-first/probot-issue-form
 ```
 
 ## Overview
@@ -15,7 +15,7 @@ Library exposes a single fuction `parse`. It accepts probot context for `issue.c
 ## Usage
 
 ```js
-const issueForm = require('@open-services-group/probot-issue-form');
+const issueForm = require('@operate-first/probot-issue-form');
 
 module.exports = app => {
     app.on('issues.created', async(context) => {
