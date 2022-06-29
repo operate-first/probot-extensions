@@ -1,6 +1,6 @@
 {
   "name": "@operate-first/probot-metrics",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Probot extension to expose Prometheus metrics",
   "main": "lib/index.js",
   "types": "dist/index.d.ts",
