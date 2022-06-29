@@ -5,7 +5,7 @@ This extension enables you to interface Kubernetes from Probot with ease. It's a
 ## Installation
 
 ```bash
-npm install --save @open-services-group/probot-kubernetes
+npm install --save @operate-first/probot-kubernetes
 ```
 
 ## Overview
@@ -27,7 +27,7 @@ Additionally this library offers CRUD methods for the secret management allowing
 ### Using `useK8sTokenStore(probotInstance)` middleware
 
 ```js
-const kubernetes = require('@open-services-group/probot-kubernetes');
+const kubernetes = require('@operate-first/probot-kubernetes');
 
 module.exports = app => {
     kubernetes.useK8sTokenStore(app);
@@ -84,7 +84,7 @@ module.exports = app => {
 In case you want to wrap the lifecycle methods in any additional logic, it is possible to call each CRUD method individually.
 
 ```js
-const kubernetes = require('@open-services-group/probot-kubernetes');
+const kubernetes = require('@operate-first/probot-kubernetes');
 
 module.exports = app => {
     app.on('installation.created', async (context) => {

@@ -5,7 +5,7 @@ This extension enables you to expose Prometheus metrics from Probot with ease. I
 ## Installation
 
 ```bash
-npm install --save @open-services-group/probot-metrics
+npm install --save @operate-first/probot-metrics
 ```
 
 ## Overview
@@ -21,7 +21,7 @@ npm install --save @open-services-group/probot-metrics
 If you want to leverage this extension, it is required that your Probot instance has [a server exposed](https://probot.github.io/docs/http/) (This extension currently supports Prometheus PULL mode only, serverless deployments don't work like that.)
 
 ```js
-const metrics = require('@open-services-group/probot-metrics');
+const metrics = require('@operate-first/probot-metrics');
 
 module.exports = (app, { getRouter }) => {
     const router = getRouter();
@@ -36,7 +36,7 @@ By default this extension tracks default Node.js metrics and exposes them (with 
 You can use `useCounter`, `useGauge`, `useHistogram` and `useSummary` to define custom metrics.
 
 ```js
-const metrics = require('@open-services-group/probot-metrics');
+const metrics = require('@operate-first/probot-metrics');
 
 module.exports = app => {
     // Exposing the route is required in all cases

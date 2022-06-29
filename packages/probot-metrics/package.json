@@ -1,5 +1,5 @@
 {
-  "name": "@open-services-group/probot-metrics",
+  "name": "@operate-first/probot-metrics",
   "version": "1.0.1",
   "description": "Probot extension to expose Prometheus metrics",
   "main": "lib/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/open-services-group/probot-extensions.git"
+    "url": "git+https://github.com/operate-first/probot-extensions.git"
   },
-  "author": "Open Services Group <open-services-group@redhat.com>",
+  "author": "Tom Coufal <tcoufal@redhat.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/open-services-group/probot-extensions/issues"
+    "url": "https://github.com/operate-first/probot-extensions/issues"
   },
-  "homepage": "https://github.com/open-services-group/probot-extensions#readme",
+  "homepage": "https://github.com/operate-first/probot-extensions#readme",
   "dependencies": {
     "prom-client": "^14.0.1"
   },
