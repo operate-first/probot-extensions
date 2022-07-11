@@ -51,11 +51,17 @@ export const getTokenSecretName = (context: any) => {
   return SECRET_NAME_PREFIX + context.payload.installation.id;
 };
 
+const unpackExceptionMessage = (err: any) => {
+  throw err?.body?.message || err;
+};
+
 const createSecretPayload = async (context: any) => {
   const appAuth = (await context.octokit.auth({
     type: 'installation',
   })) as InstallationAccessTokenAuthentication;
-  const orgName = context.payload.installation.account.login;
+  const orgName =
+    context.payload.installation?.account?.login ||
+    context.payload.organization.login;
 
   return {
     metadata: {
@@ -75,27 +81,27 @@ const createSecretPayload = async (context: any) => {
 };
 
 export const createTokenSecret = async (context: any) => {
-  return useApi(k8s.CoreV1Api).createNamespacedSecret(
-    getNamespace(),
-    await createSecretPayload(context)
-  );
+  return useApi(k8s.CoreV1Api)
+    .createNamespacedSecret(getNamespace(), await createSecretPayload(context))
+    .catch(unpackExceptionMessage);
 };
 
 export const deleteTokenSecret = async (context: any) => {
-  return useApi(k8s.CoreV1Api).deleteNamespacedSecret(
-    getNamespace(),
-    SECRET_NAME_PREFIX + context.payload.installation.id
-  );
+  return useApi(k8s.CoreV1Api)
+    .deleteNamespacedSecret(
+      getNamespace(),
+      SECRET_NAME_PREFIX + context.payload.installation.id
+    )
+    .catch(unpackExceptionMessage);
 };
 
 export const updateTokenSecret = async (context: any) => {
-  const appSecret = await useApi(k8s.CoreV1Api).readNamespacedSecret(
-    SECRET_NAME_PREFIX + context.payload.installation.id,
-    k8sNamespace
-  );
-  if (!appSecret) {
-    throw new Error('Secret not found, app not installed');
-  }
+  const appSecret = await useApi(k8s.CoreV1Api)
+    .readNamespacedSecret(
+      SECRET_NAME_PREFIX + context.payload.installation.id,
+      k8sNamespace
+    )
+    .catch(unpackExceptionMessage);
   const current_date = new Date();
   const expiry_date = new Date(
     appSecret.body?.metadata?.annotations?.expiresAt || 0
@@ -106,9 +112,17 @@ export const updateTokenSecret = async (context: any) => {
     return Promise.resolve();
   }
 
-  return useApi(k8s.CoreV1Api).patchNamespacedSecret(
-    SECRET_NAME_PREFIX + context.payload.installation.id,
-    getNamespace(),
-    await createSecretPayload(context)
-  );
+  return useApi(k8s.CoreV1Api)
+    .patchNamespacedSecret(
+      SECRET_NAME_PREFIX + context.payload.installation.id,
+      getNamespace(),
+      await createSecretPayload(context),
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      { headers: { 'content-type': 'application/merge-patch+json' } }
+    )
+    .catch(unpackExceptionMessage);
 };
