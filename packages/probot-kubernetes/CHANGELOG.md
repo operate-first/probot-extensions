@@ -1,3 +1,11 @@
+## @operate-first/probot-kubernetes [1.0.1](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-kubernetes@1.0.0...@operate-first/probot-kubernetes@1.0.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* throw error on updateTokenSecret if unauthenticated ([#30](https://github.com/operate-first/probot-extensions/issues/30)) ([bdeeda9](https://github.com/operate-first/probot-extensions/commit/bdeeda965db908839e117f88f3a6642c0c878e6a))
+* **deps:** update dependency @kubernetes/client-node to ^0.17.0 ([#23](https://github.com/operate-first/probot-extensions/issues/23)) ([e9a355c](https://github.com/operate-first/probot-extensions/commit/e9a355caafa802dff2f2c1d991f96b08637b3de5))
+
 # @operate-first/probot-kubernetes 1.0.0 (2022-06-29)
 
 
