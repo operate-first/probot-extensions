@@ -29,7 +29,7 @@
     "packages/*"
   ],
   "engines": {
-    "node": ">= 10.13.0"
+    "node": ">=16"
   },
   "eslintConfig": {
     "root": true,
