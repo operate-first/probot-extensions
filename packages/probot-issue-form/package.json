@@ -8,6 +8,9 @@
     "build": "tsc",
     "test": "jest"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/operate-first/probot-extensions.git"
