@@ -89,8 +89,8 @@ export const createTokenSecret = async (context: any) => {
 export const deleteTokenSecret = async (context: any) => {
   return useApi(k8s.CoreV1Api)
     .deleteNamespacedSecret(
-      getNamespace(),
-      SECRET_NAME_PREFIX + context.payload.installation.id
+      SECRET_NAME_PREFIX + context.payload.installation.id,
+      getNamespace()
     )
     .catch(unpackExceptionMessage);
 };
