@@ -22,7 +22,8 @@ const k8sNamespace = (() => {
       'utf8'
     );
   } else {
-    return k8sContext.split('/')[0];
+    const ctx = kc.getContextObject(k8sContext);
+    return ctx?.namespace || 'default';
   }
 })();
 
@@ -59,9 +60,11 @@ const createSecretPayload = async (context: any) => {
   const appAuth = (await context.octokit.auth({
     type: 'installation',
   })) as InstallationAccessTokenAuthentication;
+
+  // orgName may not exist in payload
   const orgName =
     context.payload.installation?.account?.login ||
-    context.payload.organization.login;
+    context.payload.organization?.login;
 
   return {
     metadata: {
