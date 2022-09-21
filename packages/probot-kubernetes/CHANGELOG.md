@@ -1,3 +1,10 @@
+## @operate-first/probot-kubernetes [1.0.2](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-kubernetes@1.0.1...@operate-first/probot-kubernetes@1.0.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* parameter issues for deleteNamespacedSecret ([#46](https://github.com/operate-first/probot-extensions/issues/46)) ([4aa63cb](https://github.com/operate-first/probot-extensions/commit/4aa63cb479c859186638add2e3d27c34e673dbbb))
+
 ## @operate-first/probot-kubernetes [1.0.1](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-kubernetes@1.0.0...@operate-first/probot-kubernetes@1.0.1) (2022-07-11)
 
 
