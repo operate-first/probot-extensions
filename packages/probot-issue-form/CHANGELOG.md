@@ -1,3 +1,10 @@
+## @operate-first/probot-issue-form [1.0.1](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-issue-form@1.0.0...@operate-first/probot-issue-form@1.0.1) (2022-11-09)
+
+
+### Bug Fixes
+
+* Remove carriage return injected by issue edits ([22ac223](https://github.com/operate-first/probot-extensions/commit/22ac223817f9a2681cc9955caac0609bda763031))
+
 # @operate-first/probot-issue-form 1.0.0 (2022-06-29)
 
 
