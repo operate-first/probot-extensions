@@ -223,7 +223,8 @@ export const fetchTemplates = async (context: any): Promise<File[]> => {
 export const parse = async (
   context: any
 ): Promise<Record<string, string | string[]>> => {
-  const body = context.payload.issue.body || '';
+  const body =
+    (context.payload.issue.body as string).replaceAll('\r\n', '\n') || '';
   const templates = (await fetchTemplates(context))
     .map((f) => ({
       file: f,

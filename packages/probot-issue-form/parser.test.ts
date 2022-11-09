@@ -254,6 +254,17 @@ describe('parse', () => {
     expect(data).toEqual({ thisIsInput: 'value' });
   });
 
+  it('single input with carriage return', async () => {
+    const context = {
+      payload: { issue: { body: '### This is input field\r\n\r\nvalue' } },
+      log: console,
+    };
+
+    const data = await parser.parse(context);
+
+    expect(data).toEqual({ thisIsInput: 'value' });
+  });
+
   it('no match', async () => {
     const context = {
       payload: { issue: { body: '### Something else\n\nvalue' } },
