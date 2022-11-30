@@ -100,6 +100,13 @@ export const createTokenSecret = async (
     .catch(unpackExceptionMessage);
 };
 
+export const readTokenSecret = (context: any) => {
+  return useApi(k8s.CoreV1Api)
+    .readNamespacedSecret(getTokenSecretName(context), getNamespace())
+    .catch(unpackExceptionMessage)
+    .then((r) => r.body);
+};
+
 export const deleteTokenSecret = async (context: any) => {
   return useApi(k8s.CoreV1Api)
     .deleteNamespacedSecret(

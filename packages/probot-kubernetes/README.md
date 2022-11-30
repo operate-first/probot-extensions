@@ -19,6 +19,7 @@ Additionally this library offers CRUD methods for the secret management allowing
 
 - `createTokenSecret(context)`: Promise which creates the token secret.
 - `getTokenSecretName(context)`: Returns secret name relevant to current context.
+- `readTokenSecret(context)`: Promise which resolves to the token secret content.
 - `updateTokenSecret(context)`: Promise which updates the token secret.
 - `deleteTokenSecret(context)`: Promise which deletes the token secret.
 
@@ -106,6 +107,31 @@ module.exports = app => {
         }
 
         await kubernetes.useApi(kubernetes.APIS.BatchV1Api).createNamespacedJob(kubernetes.getNamespace(), jobPayload);
+    });
+};
+```
+
+### Store additional data per installation
+
+This extension allows you to store additional data for each installation into the token `Secret` object.
+
+```js
+
+const kubernetes = require('@operate-first/probot-kubernetes');
+
+module.exports = app => {
+    app.on('installation.created', async (context) => {
+        await kubernetes.createTokenSecret(
+            context,
+            {
+                installationDetails: Json.stringify(context.payload),
+            }
+        );
+    });
+
+    app.on('push', (context) => {
+        const secret = await kubernetes.readTokenSecret(context);
+        app.log.info(secret.spec.stringData?.installationDetails)
     });
 };
 ```
