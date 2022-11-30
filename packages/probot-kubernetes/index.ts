@@ -28,6 +28,7 @@ const k8sNamespace = (() => {
 })();
 
 type ApiConstructor<T extends k8s.ApiType> = new (server: string) => T;
+
 export const useApi = <T extends k8s.ApiType>(
   apiClientType: ApiConstructor<T>
 ): T => kc.makeApiClient(apiClientType);
@@ -56,7 +57,10 @@ const unpackExceptionMessage = (err: any) => {
   throw err?.body?.message || err;
 };
 
-const createSecretPayload = async (context: any) => {
+const createSecretPayload = async (
+  context: any,
+  extraData?: Record<string, string>
+) => {
   const appAuth = (await context.octokit.auth({
     type: 'installation',
   })) as InstallationAccessTokenAuthentication;
@@ -77,15 +81,22 @@ const createSecretPayload = async (context: any) => {
       },
     },
     stringData: {
+      ...extraData,
       token: appAuth.token,
       orgName: orgName,
     },
   } as k8s.V1Secret;
 };
 
-export const createTokenSecret = async (context: any) => {
+export const createTokenSecret = async (
+  context: any,
+  extraData?: Record<string, string>
+) => {
   return useApi(k8s.CoreV1Api)
-    .createNamespacedSecret(getNamespace(), await createSecretPayload(context))
+    .createNamespacedSecret(
+      getNamespace(),
+      await createSecretPayload(context, extraData)
+    )
     .catch(unpackExceptionMessage);
 };
 
@@ -98,7 +109,10 @@ export const deleteTokenSecret = async (context: any) => {
     .catch(unpackExceptionMessage);
 };
 
-export const updateTokenSecret = async (context: any) => {
+export const updateTokenSecret = async (
+  context: any,
+  extraData?: Record<string, string>
+) => {
   const appSecret = await useApi(k8s.CoreV1Api)
     .readNamespacedSecret(
       SECRET_NAME_PREFIX + context.payload.installation.id,
@@ -119,7 +133,7 @@ export const updateTokenSecret = async (context: any) => {
     .patchNamespacedSecret(
       SECRET_NAME_PREFIX + context.payload.installation.id,
       getNamespace(),
-      await createSecretPayload(context),
+      await createSecretPayload(context, extraData),
       undefined,
       undefined,
       undefined,
