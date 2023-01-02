@@ -26,7 +26,7 @@
     "probot": "^12.2.3"
   },
   "dependencies": {
-    "@kubernetes/client-node": "^0.17.0"
+    "@kubernetes/client-node": "^0.18.0"
   },
   "publishConfig": {
     "access": "public"
