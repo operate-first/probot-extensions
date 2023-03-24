@@ -1,3 +1,11 @@
+## @operate-first/probot-kubernetes [1.0.3](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-kubernetes@1.0.2...@operate-first/probot-kubernetes@1.0.3) (2023-03-24)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#82](https://github.com/operate-first/probot-extensions/issues/82)) ([79bfaf7](https://github.com/operate-first/probot-extensions/commit/79bfaf71fe056ca556b8744d2fdd7724ab249903))
+* **typescript:** scope probot context passed to handlers in probot-kubernetes ([6ade978](https://github.com/operate-first/probot-extensions/commit/6ade978d8fce3ddb8c38331bbca9aca5e4faedb4))
+
 ## @operate-first/probot-kubernetes [1.0.2](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-kubernetes@1.0.1...@operate-first/probot-kubernetes@1.0.2) (2022-09-21)
 
 

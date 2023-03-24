@@ -1,6 +1,6 @@
 {
   "name": "@operate-first/probot-kubernetes",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Probot extension to interact with Kubernetes",
   "main": "lib/index.js",
   "types": "dist/index.d.ts",
