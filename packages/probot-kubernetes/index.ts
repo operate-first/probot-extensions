@@ -2,7 +2,7 @@ import fs from 'fs';
 import * as k8s from '@kubernetes/client-node';
 import { InstallationAccessTokenAuthentication } from '@octokit/auth-app';
 import dotenv from 'dotenv';
-import { Probot } from 'probot';
+import { Probot, Context } from 'probot';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -35,11 +35,14 @@ export const getNamespace = () => k8sNamespace;
 export const APIS = k8s;
 
 export const useK8sTokenStore = (app: Probot) => {
-  app.on('installation.created', async (context) => {
-    await createTokenSecret(context);
-  });
+  app.on(
+    'installation.created',
+    async (context: Context<'installation.created'>) => {
+      await createTokenSecret(context);
+    }
+  );
 
-  app.on('installation.deleted', async (context) => {
+  app.on('installation.deleted', async (context: Context<'installation.deleted'>) => {
     await deleteTokenSecret(context);
   });
 
