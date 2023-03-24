@@ -1,3 +1,10 @@
+## @operate-first/probot-issue-form [1.0.2](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-issue-form@1.0.1...@operate-first/probot-issue-form@1.0.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **typescript:** scope probot context passed to handlers in probot-kubernetes ([6ade978](https://github.com/operate-first/probot-extensions/commit/6ade978d8fce3ddb8c38331bbca9aca5e4faedb4))
+
 ## @operate-first/probot-issue-form [1.0.1](https://github.com/operate-first/probot-extensions/compare/@operate-first/probot-issue-form@1.0.0...@operate-first/probot-issue-form@1.0.1) (2022-11-09)
 
 
