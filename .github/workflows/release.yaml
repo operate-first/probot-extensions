@@ -37,7 +37,7 @@ jobs:
         uses: ./.github/actions/test
 
       - name: Update comment
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         if: ${{ always() }}
         id: comment
         with:
@@ -60,7 +60,7 @@ jobs:
         uses: ./.github/actions/build
 
       - name: Update comment
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         if: ${{ always() }}
         id: comment
         with:
@@ -81,7 +81,7 @@ jobs:
       tag: v${{ steps.semantic.outputs.new_release_version }}
     steps:
       - name: Update comment
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.issue.number }}
           comment-id: ${{ needs.check-release.outputs.comment-id}}
@@ -101,7 +101,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update comment
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         if: ${{ steps.semantic.outputs.new_release_published != 'true' }}
         with:
           issue-number: ${{ github.event.issue.number }}
@@ -124,7 +124,7 @@ jobs:
         run: exit 1
 
       - name: Update comment
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         with:
           issue-number: ${{ github.event.issue.number }}
