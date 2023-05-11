@@ -42,9 +42,12 @@ export const useK8sTokenStore = (app: Probot) => {
     }
   );
 
-  app.on('installation.deleted', async (context: Context<'installation.deleted'>) => {
-    await deleteTokenSecret(context);
-  });
+  app.on(
+    'installation.deleted',
+    async (context: Context<'installation.deleted'>) => {
+      await deleteTokenSecret(context);
+    }
+  );
 
   app.onAny(async (context) => {
     await updateTokenSecret(context);
