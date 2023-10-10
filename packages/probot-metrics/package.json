@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/operate-first/probot-extensions#readme",
   "dependencies": {
-    "prom-client": "^14.0.1"
+    "prom-client": "^15.0.0"
   },
   "peerDependencies": {
     "express": "^4.18.1"
