@@ -23,7 +23,7 @@
   "homepage": "https://github.com/operate-first/probot-extensions#readme",
   "peerDependencies": {
     "dotenv": "^16.0.1",
-    "probot": "^12.2.3"
+    "probot": "^12.2.3 || ^13.0.0"
   },
   "dependencies": {
     "@kubernetes/client-node": "^0.18.0"
