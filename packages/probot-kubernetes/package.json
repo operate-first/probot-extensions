@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/operate-first/probot-extensions#readme",
   "peerDependencies": {
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.0.1 || ^17.0.0",
     "probot": "^12.2.3"
   },
   "dependencies": {
